@@ -1,5 +1,5 @@
-const api = 'http://localhost:8080';
-//const api = 'http://abbyyfrontend2020.azurewebsites.net'
+//const api = 'http://localhost:8080';
+const api = 'http://abbyyfrontend2020.azurewebsites.net'
 
 function signIn(login, password) {
     let model = {
@@ -63,6 +63,17 @@ function getArticles() {
     });
 }
 
+function deleteArticle(id) {
+    let url = api + `/articles/${id}`;
+
+    return fetch(url, {
+        method : 'DELETE',
+        headers : {
+            'Authorization' : localStorage.getItem('token')
+        }
+    });
+}
+
 function getArticle(id) {
     let url = api + `/articles/${id}`;
 
@@ -75,7 +86,37 @@ function getArticle(id) {
     });
 }
 
+function getComments(id) {
+    let url = api + `/articles/${id}/comments`;
 
+    return fetch(url, {
+        method : 'GET',
+        headers : {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type' : 'application/json',
+        }
+    });
+}
+
+function updateArticle(id, content, title, imageUrl) {
+    let model = {
+        'image_url': imageUrl,
+        'title': title,
+        'content': content
+    };
+
+    let url = api + `/articles/${id}`;
+
+    return fetch(url, {
+        method: 'put',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+            'Authorization' : localStorage.getItem('token')
+        },
+        body: JSON.stringify(model)
+    });
+}
 
 function postArticle(content, title, imageUrl) {
     let model = {
@@ -97,4 +138,23 @@ function postArticle(content, title, imageUrl) {
     });
 }
 
-export { signIn, signUp, getSelfUser, getArticles, postArticle, getArticle }
+function postComment(id, comment) {
+    let model = {
+        'content': comment
+    };
+
+    let url = api + `/articles/${id}/comments`;
+
+    return fetch(url, {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
+            'Authorization' : localStorage.getItem('token')
+        },
+        body: JSON.stringify(model)
+    });
+}
+
+export { signIn, signUp, getSelfUser, getArticles, postArticle, getArticle, deleteArticle, updateArticle,
+getComments, postComment}

@@ -7,9 +7,9 @@ class SignOut extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: ''
+      username: props.loggin
     };
-
+    this.signOut = this.signOut.bind(this);
   }
 
   componentDidMount() {
@@ -28,17 +28,16 @@ class SignOut extends Component {
   }
 
   signOut() {
-    localStorage.setItem('token', '');
-    localStorage.setItem('userId', '');
+        this.setState({ username: '' });
+        localStorage.setItem('token', '');
+        localStorage.setItem('userId', '');
+        this.props.updateData(this.state.username);
   }
-
-
 
   render() {
     return (
         <header>
-          <button onClick={this.signOut}>Sign Out</button>
-          <article>{this.state.username}</article>
+          <button className="btn btn-primary" onClick={this.signOut}>Sign Out</button>
           <br/>
         </header>
     );
@@ -47,27 +46,3 @@ class SignOut extends Component {
 
 export default SignOut;
 
-/*function Login() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/Login.js</code> and save to reload.
-          <br/>
-          Login page ;)
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default Login;*/
