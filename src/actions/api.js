@@ -1,5 +1,5 @@
-//const api = 'http://localhost:8080';
-const api = 'http://abbyyfrontend2020.azurewebsites.net'
+const api = 'http://localhost:8080';
+//const api = 'http://abbyyfrontend2020.azurewebsites.net'
 
 function signIn(login, password) {
     let model = {

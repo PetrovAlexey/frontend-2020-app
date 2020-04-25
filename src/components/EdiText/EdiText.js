@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import EdiText from "react-editext";
 
+
 const StyledEdiText = styled(EdiText)`
           button {
             border-radius: 5px;

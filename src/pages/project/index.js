@@ -122,6 +122,9 @@ class ProjectPage extends React.Component {
             }
         }
 
+        const sheet = new CSSStyleSheet();
+        sheet.replaceSync(`button[editext="edit-button"] { display: ${(this.state.mine !== this.state.article) ? 'none' : 'block'};}`);
+        document.adoptedStyleSheets = [sheet];
 
         return (
             <div className='project'>
@@ -134,12 +137,12 @@ class ProjectPage extends React.Component {
                     />
                     <h1 className='project__title'>
                         <StyledEdiText
-                            validationMessage="Please type characters."
+                            validationMessage ="Please type characters."
                             validation={val => val.length > 0}
                             showButtonsOnHover
+
                             type="text"
                             value={title}
-                            name = "title"
                             onSave={(value) => handleSave(value, "title")}
                         />
                     </h1>
@@ -147,6 +150,8 @@ class ProjectPage extends React.Component {
                     <div className='project__description'>
                         <StyledEdiTextArea
                             type='textarea'
+                            validationMessage="Please type characters."
+                            validation={val => val.length > 0}
                             showButtonsOnHover
                             inputProps={{
                                 className: 'textarea',

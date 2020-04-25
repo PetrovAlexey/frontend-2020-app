@@ -97,9 +97,10 @@ class Auth extends Component {
 
     render() {
         const { loggin } = this.state.loggin;
-        const { username, password, submitted } = this.state;
-        let content;
-        if (this.state.loggin != '') {
+        const { username, password, submitted, register } = this.state;
+        let content = '';
+        if (this.state.loggin.toString() !== '') {
+            console.log(this.state.loggin);
             content =
                 <div>
                 <h2>Привет, {this.state.loggin}</h2>
@@ -166,17 +167,5 @@ class Auth extends Component {
         );
     }
 }
-
-function mapState(state) {
-    const { loggingIn } = state.authentication;
-    return { loggingIn };
-};
-
-const actionCreators = {
-    //login: userActions.login,
-    //logout: userActions.logout
-};
-
-const connectedLoginPage = connect(mapState, actionCreators)(Auth);
 
 export default Auth;

@@ -3,7 +3,7 @@ import React, {Component, useState} from "react";
 import {getArticles, getSelfUser, postArticle} from "../../actions/api";
 
 
-class Articles extends Component {
+class   Articles extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -119,57 +119,56 @@ class Articles extends Component {
                 {this.state.articles.map(work => (
                     <PortfolioItem key={work.title} work={work} />
                 ))}
-                </div>
-                <div className="card">
-                {this.state.closed ? (
-                    <button
-                        className='button'
-                        onClick={() => this.openForm()}>
-                        Открыть форму
-                    </button>
-                ) : (
-                    <div>
-                        <hr/>
-                        <form className='contact-form' onSubmit={this.submitHandler}>
-                            <div className='contact-form__field'>
-                                <input
-                                    value={imageUrl}
-                                    onChange={this.imageChangeHandler}
-                                    placeholder='Картинка'
-                                />
-                                {imageUrlError ? (
-                                    <div className='error'>Заполните поле</div>
-                                ) : null}
-                            </div>
 
-                            <div className='contact-form__field'>
-                                <input
-                                    value={title}
-                                    onChange={this.titleChangeHandler}
-                                    placeholder='Заголовок'
-                                />
-                                {titleError ? (
-                                    <div className='error'>Заполните поле</div>
-                                ) : null}
-                            </div>
-                            <div className='contact-form__field'>
-                    <textarea
-                        rows='10'
-                        value={content}
-                        onChange={this.contentChangeHandler}
-                        placeholder='Содержание'
-                    ></textarea>
-                                {contentError ? (
-                                    <div className='error'>Заполните поле</div>
-                                ) : null}
-                            </div>
-                            <button className='button' type='submit'>
-                                Отправить
+                    <div className="card portfolio-item">
+                        {this.state.closed ? (
+                            <button
+                                className='btn'
+                                onClick={() => this.openForm()}>
+                                Добавить статью
                             </button>
-                        </form>
+                        ) : (
+                            <div className='form-group'>
+                                <form className='form' onSubmit={this.submitHandler}>
+                                    <div className='card-title'>
+                                        <input
+                                            className='form-control'
+                                            value={imageUrl}
+                                            onChange={this.imageChangeHandler}
+                                            placeholder='Картинка'
+                                        />
+                                    </div>
+
+                                        <div className='card-title'>
+                                            <input
+                                                className='form-control'
+                                                value={title}
+                                                onChange={this.titleChangeHandler}
+                                                placeholder='Заголовок'
+                                                required
+                                            />
+
+                                        </div>
+                                    <div className='card-body'>
+                                        <textarea
+                                            className='form-control'
+                                            rows='8'
+                                            value={content}
+                                            onChange={this.contentChangeHandler}
+                                            placeholder='Содержание'
+                                            required/>
+                                            <button className='btn btn-primary' type='submit'>
+                                                Отправить
+                                            </button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        )}
                     </div>
-                )}
+
                 </div>
+
             </div>
 
         )

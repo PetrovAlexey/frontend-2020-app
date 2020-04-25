@@ -18,11 +18,12 @@ class HomePage extends React.Component {
                     </Auth>
                     <About title='React-разработчик Алексей Петров'>
                         <p>
-                            Разрабатываю на самом крутом в мире фреймворке
+                            ABBYY 2020 frontend course project
                             <br />
-                            самые крутые в мире SPA!
+                            Server-side
+                            Сервер расположен по адресу http://abbyyfrontend2020.azurewebsites.net/
                         </p>
-                        <p>С удовольствием и вам что-нибудь разработаю ;)</p>
+                        <p>Код сервера доступен в репозитории: <br/> https://github.com/vasily-shakhov/frontend-2020-server</p>
                     </About>
                     <Articles/>
                 </main>
